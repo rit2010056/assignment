@@ -4,3 +4,20 @@ checkout time - 2015-04-04
 IN this case on 2,3,4 room will be occupied 
 
 If No room is booked in the range(checkin,checkout) then all room will be available outside the range
+
+Sample Example:
+    metropolis_hotels.csv
+          Westin, 10
+          Best Western, 20
+          Hilton, 10
+          
+    metropolis_bookings.csv
+          Hilton, 2015-04-02, 2015-04-03
+          Hilton, 2015-04-02, 2015-04-04
+          Westin, 2015-05-01, 2015-05-20
+  
+  EXAMPLE OF HOTEL DICTIONARY
+        {'Best Western': {'total': 20, 'booked_date': {}}, 'Westin': {'total': 1, 'booked_date': {datetime.date(2015, 5, 20): 1, datetime.date(2015, 5, 1): 1}}, 'Hilton': {'total': 10, 'booked_date': {datetime.date(2015, 4, 2): 2, datetime.date(2015, 4, 4): 1, datetime.date(2015, 4, 3): 1}}}
+
+  
+  
