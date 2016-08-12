@@ -1,0 +1,6 @@
+Assumption -
+checkin time - 2015-04-02
+checkout time - 2015-04-04
+IN this case on 2,3,4 room will be occupied 
+
+If No room is booked in the range(checkin,checkout) then all room will be available outside the range
