@@ -1,5 +1,6 @@
 import csv
 import datetime
+import sys, getopt
 class HotelAvailabilty(object):
 
 	# To Convert String to Date
@@ -7,9 +8,9 @@ class HotelAvailabilty(object):
 		return datetime.date(*map(int, date.strip().split('-')))
 
 	# Constructor to feed data of hotel in dictionary
-	def __init__(self):
+	def __init__(self ,hotel_path, booking_path):
 		self.hotels = {} # 
-		with open('metropolis_hotels.csv', 'rb') as csvfile:
+		with open(hotel_path, 'rb') as csvfile:
 			reader = csv.reader(csvfile, delimiter=',')
 			for hotel in reader:
 				self.hotels[hotel[0]] = {}
@@ -19,7 +20,7 @@ class HotelAvailabilty(object):
 		# booked_date key will have all the booked room per date like / {'2015-04-03':3}/
 		# means 3 times room has been booked at this date
 
-		with open('metropolis_bookings.csv', 'rb') as csvfile:
+		with open(booking_path, 'rb') as csvfile:
 			reader = csv.reader(csvfile, delimiter=',')
 			for row in reader:
 				dictionary = self.hotels[row[0]]['booked_date']
@@ -28,7 +29,6 @@ class HotelAvailabilty(object):
 				self.hotels[row[0]]['booked_date'][checkin_date] = dictionary.get(checkin_date,0)+1
 				self.hotels[row[0]]['booked_date'][checkout_date] = dictionary.get(checkout_date,0)+1
 
-			
 
 	#To Get Availabilty
 	def get_availability(self,checkin,checkout):
@@ -50,9 +50,10 @@ class HotelAvailabilty(object):
 				if max(total_booked_slot)<total:
 					available_hotel.append(hotel)
 			else:
-				# If No room is not booked in the range(checkin,checkout) then all room will be available
+				# If No room is booked in the range(checkin,checkout) then all room will be available
 				available_hotel.append(hotel)
 		return available_hotel
 
-H = HotelAvailabilty()
-available_hotel = H.get_availability('2015-04-02','2015-05-15')
+if __name__ == "__main__":
+	H = HotelAvailabilty()
+	available_hotel = H.get_availability('2015-04-02','2015-04-15')
