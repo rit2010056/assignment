@@ -19,5 +19,7 @@ Sample Example:
   EXAMPLE OF HOTEL DICTIONARY
         {'Best Western': {'total': 20, 'booked_date': {}}, 'Westin': {'total': 1, 'booked_date': {datetime.date(2015, 5, 20): 1, datetime.date(2015, 5, 1): 1}}, 'Hilton': {'total': 10, 'booked_date': {datetime.date(2015, 4, 2): 2, datetime.date(2015, 4, 4): 1, datetime.date(2015, 4, 3): 1}}}
 
-  
-  
+------------------------
+  Sample Input 
+  python  terminal.py --hotels ./metropolis_hotels.csv --bookings ./metropolis_bookings.csv --checkin 2015-05-02 --checkout 2015-08-05
+------------------------
