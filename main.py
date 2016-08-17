@@ -2,9 +2,17 @@
 from Hotal_Avail import HotelAvailabilty
 import argparse
 import os.path
-import re
+import datetime
 
 class CommandLine(object):
+
+	def validate_date_format(self, date_text):
+	    try:
+	        datetime.datetime.strptime(date_text, '%Y-%m-%d')
+	        return True
+	    except ValueError:
+	        return False
+
 	# Function To Parse the argument
 	def parse(self):
 		parser = argparse.ArgumentParser(description='Hotal Availabilty')
@@ -24,6 +32,18 @@ class CommandLine(object):
 
 		if not os.path.isfile(args.bookings):
 			print "- Hotel booking File is not FOUND"
+			Error = True
+
+		if not self.validate_date_format(args.checkin):
+			print "Incorrect checkin data format, should be YYYY-MM-DD"
+			Error = True
+
+		if not self.validate_date_format(args.checkout):
+			print "Incorrect checkout  data format, should be YYYY-MM-DD"
+			Error = True
+
+		if args.checkin>args.checkout:
+			print "- Check in date should be less then Check out date"
 			Error = True
 
 		# Can Add Date Format Checker
